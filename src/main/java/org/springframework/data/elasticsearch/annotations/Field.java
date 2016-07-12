@@ -29,6 +29,7 @@ import java.lang.annotation.Target;
  * @author Jonathan Yan
  * @author Jakub Vavrik
  * @author Kevin Leturc
+ * @author Benedikt Fuchs
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
@@ -36,21 +37,43 @@ import java.lang.annotation.Target;
 @Inherited
 public @interface Field {
 
-	FieldType type() default FieldType.Auto;
+    FieldType type() default FieldType.Auto;
 
-	FieldIndex index() default FieldIndex.analyzed;
+    FieldIndex index() default FieldIndex.analyzed;
 
-	DateFormat format() default DateFormat.none;
+    DateFormat format() default DateFormat.none;
 
-	String pattern() default "";
+    String pattern() default "";
 
-	boolean store() default false;
+    boolean store() default false;
 
-	String searchAnalyzer() default "";
+    String searchAnalyzer() default "";
 
-	String analyzer() default "";
+    String analyzer() default "";
 
-	String[] ignoreFields() default {};
+    String[] ignoreFields() default {};
 
-	boolean includeInParent() default false;
+    boolean includeInParent() default false;
+
+    double boost() default Double.NaN;
+
+    boolean coerce() default true;
+
+    String[] copyTo() default {};
+
+    int ignoreAbove() default -1;
+
+    boolean ignoreMalformed() default true;
+
+    boolean includeInAll() default true;
+
+    FieldIndexOptions indexOptions() default FieldIndexOptions.Auto;
+
+    String nullValue() default "";
+
+    int positionIncrementGap() default -1;
+
+    FieldSimilarity similarity() default FieldSimilarity.Auto;
+
+    FieldTermVector termVector() default FieldTermVector.Auto;
 }
